@@ -506,6 +506,15 @@ public class SimpleDialect extends SimpleServiceResolverAware<Dialect> implement
     }
 
     @Override
+    public String getGeneratedColumn(boolean generatedAlways) {
+        if (generatedAlways) {
+            return "true";
+        } else {
+            return "false";
+        }
+    }
+
+    @Override
     public String getCheckClause(String clause) {
         return clause != null ? "(" + quoteScript(clause) + ")" : null;
     }

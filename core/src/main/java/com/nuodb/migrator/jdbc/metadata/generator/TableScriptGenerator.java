@@ -276,8 +276,12 @@ public class TableScriptGenerator extends ScriptGeneratorBase<Table> {
             buffer.append(getTypeName(column, scriptGeneratorManager));
             if (column.isIdentity() && addSequences) {
                 buffer.append(' ');
+                // added for generatedAlways
+                // int flag = column.getInt("FLAGS");
+                buffer.append(dialect.getGeneratedColumn(column.getSequence().isGeneratedAlways()));
                 buffer.append(dialect.getIdentityColumn(
                         column.getSequence() != null ? scriptGeneratorManager.getName(column.getSequence()) : null));
+
             }
             if (column.isNullable()) {
                 buffer.append(dialect.getNullColumnString());

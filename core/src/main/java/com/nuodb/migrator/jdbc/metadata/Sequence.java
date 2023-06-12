@@ -55,6 +55,17 @@ public class Sequence extends IdentifiableBase {
     private boolean order;
     private boolean temporary;
 
+    // checks whether the generator_sequence is always or default
+    private boolean generatedAlways;
+
+    public boolean isGeneratedAlways() {
+        return generatedAlways;
+    }
+
+    public void setGeneratedAlways(boolean generatedAlways) {
+        this.generatedAlways = generatedAlways;
+    }
+
     public Sequence() {
         super(SEQUENCE, true);
     }
@@ -260,9 +271,13 @@ public class Sequence extends IdentifiableBase {
         if (maxValue != null) {
             attributes.add(format("max value=%s", maxValue));
         }
+
         attributes.add(format("cycle=%b", cycle));
+        attributes.add(format("generatedAlways=%b", generatedAlways));
+
         attributes.add(format("order=%s", order ? "DESC" : "ASC"));
         attributes.add(format("temporary=%b", temporary));
+
         if (cache != null) {
             attributes.add(format("cache=%s", cache));
         }

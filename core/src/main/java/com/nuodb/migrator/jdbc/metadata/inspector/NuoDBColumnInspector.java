@@ -126,6 +126,16 @@ public class NuoDBColumnInspector extends TableInspectorBase<Table, TableInspect
                 Sequence sequence = new Sequence(identifier);
                 column.setSequence(sequence);
                 column.getTable().getSchema().addSequence(sequence);
+                int flags = columns.getInt("FLAGS");
+                System.out.println("flags for sequence: " + flags);
+                if (flags >= 9) {
+                    column.getSequence().setGeneratedAlways(true);
+                    // column.setGeneratedAlways(true);
+                } else {
+                    column.getSequence().setGeneratedAlways(false);
+                    // column.setGeneratedAlways(false);
+                }
+                System.out.println("GENERATO_SEQUENCE: " + column.getSequence().isGeneratedAlways());
             }
             column.setAutoIncrement(identifier != null);
 

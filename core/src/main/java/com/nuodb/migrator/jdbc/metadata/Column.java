@@ -83,6 +83,17 @@ public class Column extends IdentifiableBase implements Field {
 
     private DefaultValue defaultValue;
 
+    // checks whether the generator_sequence is always or default
+    private boolean generatedAlwaysColumn;
+
+    public boolean isGeneratedAlways() {
+        return generatedAlwaysColumn;
+    }
+
+    public void setGeneratedAlways(boolean generatedAlwaysColumn) {
+        this.generatedAlwaysColumn = generatedAlwaysColumn;
+    }
+
     public Column() {
         super(COLUMN);
     }

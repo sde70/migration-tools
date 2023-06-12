@@ -121,6 +121,8 @@ public interface Dialect {
 
     String getIdentityColumn(String sequence);
 
+    String getGeneratedColumn(boolean generatedAlways);
+
     String getDefaultValue(Column column, Session session);
 
     String getDeleteAction(ReferenceAction deleteAction);
@@ -228,4 +230,5 @@ public interface Dialect {
     TranslationManager getTranslationManager();
 
     boolean requiresTableLockForDDL();
+
 }
